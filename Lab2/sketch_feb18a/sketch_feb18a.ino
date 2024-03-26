@@ -14,10 +14,11 @@ void algo_3() {
 }
 
 void algo_6() {
-  for (int i = ledCount - 1; i >= 0; i--) {
+  for (int i = ledCount - 1; i >= 0; i -= 2) {
     digitalWrite(ledPins[i], HIGH);
     delay(900);
     digitalWrite(ledPins[i], LOW);
+    if (i == 1) i = ledCount;
   }
 }
 

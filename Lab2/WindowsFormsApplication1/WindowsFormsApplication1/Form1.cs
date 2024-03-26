@@ -80,12 +80,13 @@ namespace WindowsFormsApplication1
 
         private void algo_6()
         {
-            for (int i = 8; i >= 1; i--)
+            for (int i = 8; i >= 1; i -= 2)
             {
                 Control panel = Controls.Find("panel" + i, true).FirstOrDefault();
                 panel.BackColor = Color.Red;
                 Thread.Sleep(900);
                 panel.BackColor = Color.SkyBlue;
+                if (i == 2) i = 7 + 2;
             }
         }
 
