@@ -85,21 +85,47 @@ namespace MasterForm
                 {
                     if(modeA)
                     {
-                        messageA += (char)buffer[0];
-                        if(messageA.Length == 22)
+                        if(messageA.Length >= 22)
                         {
-                            displayDataSlaveA(messageA);
+                            if(messageA.Length == 22)
+                            {
+                                messageA += "     ";
+                            }
+                            messageA += buffer[0].ToString("X2");
+                            if (messageA.Length == 31)
+                            {
+                                displayDataSlaveA(messageA);
+                            }
+                        } else
+                        {
+                            messageA += (char)buffer[0];
                         }
                     } else if(modeB)
                     {
-                        messageB += (char)buffer[0];
-                        if (messageB.Length == 10)
+                        if (messageB.Length >= 10)
                         {
-                            displayDataSlaveB(messageB);
+                            if (messageB.Length == 10)
+                            {
+                                messageB += "     ";
+                            }
+                            messageB += buffer[0].ToString("X2");
+                            if (messageB.Length == 19)
+                            {
+                                displayDataSlaveB(messageB);
+                            }
+                        }
+                        else
+                        {
+                            messageB += (char)buffer[0];
                         }
                     }
                 }
             }));
+        }
+
+        private void Master_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -94,15 +94,15 @@
             this.textBox1.Location = new System.Drawing.Point(20, 103);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 146);
+            this.textBox1.Size = new System.Drawing.Size(172, 146);
             this.textBox1.TabIndex = 20;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 103);
+            this.textBox2.Location = new System.Drawing.Point(198, 103);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(141, 146);
+            this.textBox2.Size = new System.Drawing.Size(109, 146);
             this.textBox2.TabIndex = 21;
             // 
             // label2
@@ -110,7 +110,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(57, 82);
+            this.label2.Location = new System.Drawing.Point(77, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 18);
             this.label2.TabIndex = 22;
@@ -121,13 +121,13 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(206, 82);
+            this.label3.Location = new System.Drawing.Point(224, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 18);
             this.label3.TabIndex = 23;
             this.label3.Text = "Slave_B";
             // 
-            // Form1
+            // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,9 +137,10 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panelM);
-            this.Name = "Form1";
+            this.Name = "Master";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MASTER";
+            this.Load += new System.EventHandler(this.Master_Load);
             this.panelM.ResumeLayout(false);
             this.panelM.PerformLayout();
             this.ResumeLayout(false);

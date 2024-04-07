@@ -16,7 +16,7 @@ void readString() {
   clearArr();
   clearSlave_a();
   clearSlave_b();
-  _delay_ms(150);
+  _delay_ms(160);
   slaveId = readChar();
   int i = 0;
   if(slaveId == 24) {
@@ -65,7 +65,7 @@ void sendStringComp(unsigned char arr[], int size) {
   for(int i = 0; i < 32; i++) {
     charComp[i] = '\0';
   }
-  _delay_ms(150);
+  _delay_ms(160);
   sendCharComp(slaveId);
   for(int i = 0; i < size; i++) {
     sendCharComp(arr[i]);
@@ -107,7 +107,7 @@ void setup() {
 
 void loop() {
   if(!messagesRecieved) {
-    _delay_ms(150);
+    _delay_ms(160);
     readString();
     sendStringComp(slave_a_input, stringSize(slave_a_input, 32));
     readString();
