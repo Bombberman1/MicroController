@@ -1,0 +1,10 @@
+D:\MicroControll\Lab5\MasterForm\MasterForm\bin\Debug\MasterForm.exe.config
+D:\MicroControll\Lab5\MasterForm\MasterForm\bin\Debug\MasterForm.exe
+D:\MicroControll\Lab5\MasterForm\MasterForm\bin\Debug\MasterForm.pdb
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.csproj.AssemblyReference.cache
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.Master.resources
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.Properties.Resources.resources
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.csproj.GenerateResource.cache
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.csproj.CoreCompileInputs.cache
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.exe
+D:\MicroControll\Lab5\MasterForm\MasterForm\obj\Debug\MasterForm.pdb
