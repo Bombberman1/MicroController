@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm Mon Apr 15 04:53:32 2024
+AVRASM ver. 2.2.7  D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm Tue Apr 16 17:01:57 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m2560def.inc'
 D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm(1): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m2560def.inc'
@@ -1906,44 +1906,103 @@ D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm(1): Including file 
 000008 e008                      ldi r16, 0b00001000
 000009 9300 0107                 sts DDRK, r16
                                  
-00000b e010                      ldi r17, 0b00000000
-00000c e020                      ldi r18, 0b00000000
+00000b e208                      ldi r16, 0b00101000
+00000c 9300 010b                 sts PORTL, r16
                                  
-00000d ef4f                      ldi r20, 0b11111111
+                                 .def timerReg = r19
+                                 
+                                 .def ledA = r21
+                                 .def ledF = r22
+00000e e860                      ldi ledF, 0b10000000
+                                 
+                                 .def counterAH = r23
+00000f e870                      ldi counterAH, 0b10000000
+                                 .def counterAL = r24
+000010 e081                      ldi counterAL, 0b00000001
+                                 .def counterF = r25
+000011 e890                      ldi counterF, 0b10000000
+                                 
                                  
                                  start:
-00000e c001                          rjmp ledAswitch
-00000f cffe                      	rjmp start
+000012 9100 0109                 	lds r16, PINL
+000014 ff03                      	sbrs r16, 3
+000015 d005                          rcall ledAswitch
+000016 9100 0109                 	lds r16, PINL
+000018 ff05                      	sbrs r16, 5
+000019 d011                      	rcall ledFswitch
+00001a cff7                      	rjmp start
                                  
                                  
-000010 d003                      ledAswitch: rcall timer1
-000011 2714                      	eor r17, r20
-000012 b912                      	out PORTA, r17
-000013 cffc                      	rjmp ledAswitch
+                                 ledAswitch: ; algo3
+00001b d020                      	rcall timer4
+00001c e050                      	ldi ledA, 0b00000000
+00001d 2b57                      	or ledA, counterAH
+00001e 2b58                      	or ledA, counterAL
+00001f b952                      	out PORTA, ledA
+000020 9576                      	lsr counterAH
+000021 0f88                      	lsl counterAL
+000022 3078                      	cpi counterAH, 0b00001000
+000023 f7b9                      	brne ledAswitch
+000024 c000                      	rjmp resetA
                                  
-                                 timer1:
+                                 resetA:
+000025 d016                      	rcall timer4
+000026 e050                      	ldi ledA, 0b00000000
+000027 b952                      	out PORTA, ledA
+000028 e870                      	ldi counterAH, 0b10000000
+000029 e081                      	ldi counterAL, 0b00000001
+00002a 9508                      	ret
+                                 
+                                 ledFswitch: ; algo6
+00002b d010                      	rcall timer4
+00002c bb61                      	out PORTF, ledF
+00002d 9566                      	lsr ledF
+00002e 9566                      	lsr ledF
+00002f 9596                      	lsr counterF
+000030 3098                      	cpi counterF, 0b00001000
+000031 f019                      	breq setFcontinue
+000032 3090                      	cpi counterF, 0b00000000
+000033 f7b9                      	brne ledFswitch
+000034 c002                      	rjmp resetF
+                                 
+                                 setFcontinue:
+000035 e460                      	ldi ledF, 0b01000000
+000036 cff4                      	rjmp ledFswitch
+                                 
+                                 resetF:
+000037 d004                      	rcall timer4
+                                 	//ldi ledF, 0b00000000
+000038 bb61                      	out PORTF, ledF
+000039 e860                      	ldi ledF, 0b10000000
+00003a e890                      	ldi counterF, 0b10000000
+00003b 9508                      	ret
+                                 
+                                 timer4:
                                  	.equ freq = 58500 ; 0,9 sec
                                  	// (16/8) * 64 * 10^(-6) * (2^16 - 58500)
-000014 ee34                      	ldi r19, (freq >> 8)
-000015 9330 0085                 	sts TCNT1H, r19
-000017 e834                      	ldi r19, (freq & 0x00FF)
-000018 9330 0084                 	sts TCNT1L, r19
+00003c ee34                      	ldi timerReg, (freq >> 8)
+00003d 9330 00a5                 	sts TCNT4H, timerReg
+00003f e834                      	ldi timerReg, (freq & 0x00FF)
+000040 9330 00a4                 	sts TCNT4L, timerReg
                                  
-00001a e030                      	ldi r19, 0b00000000
-00001b 9330 0080                 	sts TCCR1A, r19
-00001d e035                      	ldi r19, 0b00000101 ; OVF 1024
-00001e 9330 0081                 	sts TCCR1B, r19
+000042 e030                      	ldi timerReg, 0b00000000
+000043 9330 00a0                 	sts TCCR4A, timerReg
+000045 e035                      	ldi timerReg, 0b00000101 ; OVF 1024
+000046 9330 00a1                 	sts TCCR4B, timerReg
+000048 d001                      	rcall ovf4
+000049 9508                      	ret
                                  
-000020 b336                      ovf1: in r19, TIFR1
-000021 ff30                      	sbrs r19, TOV1
-000022 cffd                      	rjmp ovf1
+                                 ovf4:
+00004a b339                      	in timerReg, TIFR4
+00004b ff30                      	sbrs timerReg, TOV4
+00004c cffd                      	rjmp ovf4
                                  
-000023 e031                      	ldi r19, (1 << TOV1)
-000024 bb36                      	out TIFR1, r19
+00004d e031                      	ldi timerReg, (1 << TOV4)
+00004e bb39                      	out TIFR4, timerReg
                                  
-000025 e030                      	ldi r19, 0b00000000
-000026 9330 0081                 	sts TCCR1B, r19
-000028 9508                      	ret
+00004f e030                      	ldi timerReg, 0b00000000
+000050 9330 00a1                 	sts TCCR4B, timerReg
+000052 9508                      	ret
                                  
 
 
@@ -1964,38 +2023,38 @@ counted separately from r26..r31 here.
 "ATmega2560" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  10 r17:   3 r18:   1 r19:  14 r20:   2 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  16 r17:   0 r18:   0 r19:  14 r20:   0 
+r21:   6 r22:   7 r23:   5 r24:   4 r25:   5 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 5 out of 35 (14.3%)
+Registers used: 7 out of 35 (20.0%)
 
 "ATmega2560" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   0 eicall:   0 eijmp :   0 elpm  :   0 
-eor   :   1 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 
-in    :   1 inc   :   0 jmp   :   0 ld    :   0 ldd   :   0 ldi   :  14 
-lds   :   0 lpm   :   0 lsl   :   0 lsr   :   0 mov   :   0 movw  :   0 
-mul   :   0 muls  :   0 mulsu :   0 neg   :   0 nop   :   0 or    :   0 
-ori   :   0 out   :   6 pop   :   0 push  :   0 rcall :   1 ret   :   1 
-reti  :   0 rjmp  :   4 rol   :   0 ror   :   0 sbc   :   0 sbci  :   0 
+cpi   :   3 cpse  :   0 dec   :   0 eicall:   0 eijmp :   0 elpm  :   0 
+eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 
+in    :   1 inc   :   0 jmp   :   0 ld    :   0 ldd   :   0 ldi   :  23 
+lds   :   2 lpm   :   0 lsl   :   1 lsr   :   4 mov   :   0 movw  :   0 
+mul   :   0 muls  :   0 mulsu :   0 neg   :   0 nop   :   0 or    :   2 
+ori   :   0 out   :   9 pop   :   0 push  :   0 rcall :   7 ret   :   4 
+reti  :   0 rjmp  :   5 rol   :   0 ror   :   0 sbc   :   0 sbci  :   0 
 sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :   0 sbr   :   0 sbrc  :   0 
-sbrs  :   1 sec   :   0 seh   :   0 sei   :   0 sen   :   0 ser   :   0 
+sbrs  :   3 sec   :   0 seh   :   0 sei   :   0 sen   :   0 ser   :   0 
 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   0 spm   :   0 
-st    :   0 std   :   0 sts   :   6 sub   :   0 subi  :   0 swap  :   0 
+st    :   0 std   :   0 sts   :   7 sub   :   0 subi  :   0 swap  :   0 
 tst   :   0 wdr   :   0 
-Instructions used: 9 out of 116 (7.8%)
+Instructions used: 15 out of 116 (12.9%)
 
 "ATmega2560" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000052     82      0     82  262144   0.0%
+[.cseg] 0x000000 0x0000a6    166      0    166  262144   0.1%
 [.dseg] 0x000200 0x000200      0      0      0    8192   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 

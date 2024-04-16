@@ -22,9 +22,13 @@
   <FILE>AssemblerLED.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <start><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>26</LINE></start>
-  <ledAswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>31</LINE></ledAswitch>
-  <timer1><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>36</LINE></timer1>
-  <ovf1><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>49</LINE></ovf1>
+  <start><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>38</LINE></start>
+  <ledAswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>48</LINE></ledAswitch>
+  <ledFswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>68</LINE></ledFswitch>
+  <timer4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>92</LINE></timer4>
+  <resetA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>60</LINE></resetA>
+  <setFcontinue><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>80</LINE></setFcontinue>
+  <resetF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>84</LINE></resetF>
+  <ovf4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>107</LINE></ovf4>
  </LABELS>
 </ASSEMBLER_INFO>
