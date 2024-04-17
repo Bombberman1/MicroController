@@ -25,18 +25,20 @@
   <start><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>9</LINE></start>
   <loop><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>44</LINE></loop>
   <clickA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>66</LINE></clickA>
-  <clickF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>72</LINE></clickF>
-  <ledAswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>78</LINE></ledAswitch>
-  <ledFswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>97</LINE></ledFswitch>
-  <resetA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>88</LINE></resetA>
+  <clickF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>81</LINE></clickF>
+  <ledAswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>96</LINE></ledAswitch>
+  <ledFswitch><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>115</LINE></ledFswitch>
+  <resetA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>106</LINE></resetA>
   <contA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>57</LINE></contA>
-  <resetF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>111</LINE></resetF>
+  <resetF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>129</LINE></resetF>
   <contF><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>60</LINE></contF>
-  <timer4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>119</LINE></timer4>
-  <setFcontinue><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>107</LINE></setFcontinue>
-  <lowSpeed><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>161</LINE></lowSpeed>
-  <contFreq><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>132</LINE></contFreq>
-  <ovf4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>144</LINE></ovf4>
-  <resA><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>140</LINE></resA>
+  <setAlgo3><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>77</LINE></setAlgo3>
+  <setAlgo6><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>92</LINE></setAlgo6>
+  <timer4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>138</LINE></timer4>
+  <setFcontinue><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>125</LINE></setFcontinue>
+  <lowSpeed><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>180</LINE></lowSpeed>
+  <contFreq><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>151</LINE></contFreq>
+  <ovf4><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>159</LINE></ovf4>
+  <delayClicks><FILE>D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm</FILE><LINE>171</LINE></delayClicks>
  </LABELS>
 </ASSEMBLER_INFO>

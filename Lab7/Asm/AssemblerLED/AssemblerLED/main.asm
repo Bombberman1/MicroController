@@ -66,12 +66,30 @@ loop:
 clickA:
 	ldi r16, 0b00001000
 	sts PORTK, r16
+	sbrs modeA, 0
+	rjmp setAlgo3
+	ldi ledA, 0b00000000
+	out PORTA, ledA
+	ldi counterAH, 0b10000000
+	ldi counterAL, 0b00000001
+	ret
+
+setAlgo3:
 	ldi modeA, 0b00000001
 	ret
 
 clickF:
 	ldi r16, 0b00001000
 	sts PORTK, r16
+	sbrs modeF, 0
+	rjmp setAlgo6
+	ldi r16, 0b00000000
+	out PORTF, r16
+	ldi ledF, 0b10000000
+	ldi counterF, 0b10000000
+	ret
+
+setAlgo6:
 	ldi modeF, 0b00000001
 	ret
 
@@ -109,7 +127,8 @@ setFcontinue:
 	ret
 
 resetF:
-	out PORTF, ledF
+	ldi r16, 0b00000000
+	out PORTF, r16
 	ldi ledF, 0b10000000
 	ldi counterF, 0b10000000
 	ldi modeF, 0b00000000
@@ -137,19 +156,10 @@ timer4:
 	rcall ovf4
 	ret
 
-resA:
-	ldi r16, 0b00000000
-	sts PORTK, r16
-
 ovf4:
-	lds r16, PINL
-	sbrs r16, 3
-	ldi modeA, 0b00000001
-	sbrs r16, 5
-	ldi modeF, 0b00000001
 	in timerReg, TIFR4
 	sbrs timerReg, TOV4
-	rjmp ovf4
+	rjmp delayClicks
 
 	ldi timerReg, (1 << TOV4)
 	out TIFR4, timerReg
@@ -157,6 +167,15 @@ ovf4:
 	ldi timerReg, 0b00000000
 	sts TCCR4B, timerReg
 	ret
+
+delayClicks:
+	lds r16, PINL
+	sbrs r16, 3
+	rcall clickA
+	lds r16, PINL
+	sbrs r16, 5
+	rcall clickF
+	rjmp ovf4
 
 lowSpeed:
 	.equ freq2 = 62020 ; 0,45 sec
