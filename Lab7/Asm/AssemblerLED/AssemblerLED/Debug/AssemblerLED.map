@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm Tue Apr 16 17:01:57 2024
+AVRASM ver. 2.2.7  D:\MicroControll\Lab7\Asm\AssemblerLED\AssemblerLED\main.asm Wed Apr 17 04:30:35 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -1359,18 +1359,29 @@ EQU  URXC3addr    0000006c
 EQU  UDRE3addr    0000006e
 EQU  UTXC3addr    00000070
 EQU  INT_VECTORS_SIZE 00000072
-DEF  timerReg     r19
+CSEG start        00000001
+DEF  timerReg     r18
+DEF  modeA        r19
+DEF  modeF        r20
 DEF  ledA         r21
 DEF  ledF         r22
 DEF  counterAH    r23
 DEF  counterAL    r24
 DEF  counterF     r25
-CSEG start        00000012
-CSEG ledAswitch   0000001b
-CSEG ledFswitch   0000002b
-CSEG timer4       0000003c
-CSEG resetA       00000025
-CSEG setFcontinue 00000035
-CSEG resetF       00000037
+CSEG loop         00000013
+CSEG clickA       00000027
+CSEG clickF       0000002c
+CSEG ledAswitch   00000031
+CSEG ledFswitch   00000040
+CSEG resetA       00000039
+CSEG contA        00000021
+CSEG resetF       0000004a
+CSEG contF        00000023
+CSEG timer4       00000050
+CSEG setFcontinue 00000048
+CSEG lowSpeed     00000075
 EQU  freq         0000e484
-CSEG ovf4         0000004a
+CSEG contFreq     0000005b
+CSEG ovf4         00000066
+CSEG resA         00000063
+EQU  freq2        0000f244
